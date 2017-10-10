@@ -62,10 +62,11 @@ When /^I have opted to see movies rated: "(.*?)"$/ do |uncheck,rating_list|
   # using the appropriate Capybara command(s)
   
   rating_list.split(",").each do |choice|
+     choice = choice.strip
      if uncheck == "un"
-            step %Q{the "ratings_#{field}" checkbox should not be checked}
+            step %Q{the "ratings_#{field}" checkbox is unchecked}
         else
-            step %Q{the "ratings_#{field}" checkbox should be checked}
+            step %Q{the "ratings_#{field}" checkbox is checked}
         end
    end     
 end
