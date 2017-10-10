@@ -23,7 +23,17 @@ Background: movies have been added to database
 
 Scenario: sort movies alphabetically
   # your scenario here
-
+  When I check the ratings:"G,R,PG-13,PG"
+  And I press "Refresh"
+  Then I look at "Movie Title"
+  And I should see "Amelie" is on the top
+  And I should see "Aladdin" is on the second top
+  
 Scenario: sort movies in increasing order of release date
+  When I check the ratings:"G,R,PG-13,PG"
+  And I press "Refresh"
+  Then I look at "Release Time"
+  And I should see "6-Apr-1968" is on the top
+  And I should see "12-Jun-1981" is on the second top
   # your scenario here
 
