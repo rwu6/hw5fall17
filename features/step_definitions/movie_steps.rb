@@ -63,22 +63,21 @@ When /^I have opted to see movies rated: "(.*?)"$/ do |uncheck,rating_list|
   
   rating_list.split(",").each do |choice|
      if uncheck == "un"
-            step %Q{I uncheck "ratings_#{field}"}
             step %Q{the "ratings_#{field}" checkbox should not be checked}
         else
-            step %Q{I check "ratings_#{field}"}
             step %Q{the "ratings_#{field}" checkbox should be checked}
         end
    end     
 end
 
 Then /^I should see only movies rated: "(.*?)"$/ do |arg1|
-    
+    rows = page.all("table#movies tbody tr td[1]").map {|t| t.text}
+    assert rows.size == 5
 end
 
 Then /^I should see all of the movies$/ do
-  rows = page.all("table#movies tbody tr td[1]").map {|t| t.text}
-  assert rows.size == 5
+    rows = page.all("table#movies tbody tr td[1]").map {|t| t.text}
+    assert rows.size == Movie.all.count
 end
 
 
