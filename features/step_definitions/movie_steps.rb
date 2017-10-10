@@ -61,14 +61,19 @@ When /^I have opted to see movies rated: "(.*?)"$/ do |uncheck,rating_list|
   # iterate over the ratings and check/uncheck the ratings
   # using the appropriate Capybara command(s)
   
-  rating_list.split(",").each do |choice|
-     
-     if uncheck 
-            uncheck "ratings_#{choice}"
-        else
-            check "rating_#{choice}"
-        end
-   end     
+   all('input[type=checkbox]').each do |checkbox|
+     if checkbox.checked? then 
+        checkbox.click
+     end
+   end
+   rating_list.split(',').each do |rate|
+       if uncheck
+          uncheck "ratings_#{rate}"
+       else
+          check "ratings_#{rate}"
+       end
+    end 
+   
 end
 
 Then /^I should see only movies rated: "(.*?)"$/ do |arg1|
