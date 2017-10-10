@@ -86,5 +86,19 @@ Then /^I should see all of the movies$/ do
     assert rows.size == Movie.all.count
 end
 
+When /^I look at "Movie Title"$/ do
+    assert true
+end    
+
+And /^I should see "Amelie" is on the top$/ do
+    movies = Movie.all
+    if movies(0).include?"Amelie"
+        assert true
+    else
+        assert false
+    
+    end
+end    
+
 
 
